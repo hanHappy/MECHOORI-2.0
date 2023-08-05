@@ -1,0 +1,21 @@
+.column-wrap ul {
+    grid-template-columns: repeat(9, 1fr);
+}
+
+.data.restaurant { grid-template-columns: repeat(9, 1fr); }
+
+.button-14 { width: 80%; }
+/* MENU */
+.btn-menu {
+    color: white;
+    background-color: var(--color-sub-1);
+}
+/* EDIT */
+.btn-edit { background-color: var(--color-bg-2); }
+
+/* DELETE */
+.btn-delete { 
+    font-size: 16px;
+    color: white;
+    background-color: var(--color-sub-2); 
+}

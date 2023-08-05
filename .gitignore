@@ -1,0 +1,7 @@
+MECHOORI-Server-2.0/src/main/resources/application.yml
+
+target
+.vscode
+.mvn
+mvnw
+mvnw.cmd

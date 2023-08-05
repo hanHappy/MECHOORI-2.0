@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.RestaurantRepository">
+
+    <select id="findAll" resultType="Restaurant">
+        select 
+            * 
+        from 
+            restaurant_study
+        <if test="query != null">
+            where 
+                name like '%${query}%'
+        </if>
+    </select>
+
+    <select id="find" resultType="Restaurant">
+        select
+            *
+        from 
+            restaurant_study
+        where 
+            id = #{id}
+    </select>
+
+    <update id="update" parameterType="Restaurant">
+        update 
+            restaurant_study
+        set
+            name = #{name},
+            category_id = #{categoryId},
+            img = #{img},
+            address = #{address},
+            operating_time = #{operatingTime},
+            contact_number = #{contactNumber}
+        where id = #{id}
+    </update>
+
+</mapper>

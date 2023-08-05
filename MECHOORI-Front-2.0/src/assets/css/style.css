@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+
+header, aside, footer, main, input, button, select, option {
+    color: var(--color-text-1);
+    font-family: var(--font-sub);
+}
+
+:root {
+    --font: 'Noto Sans KR';
+    --font-sub: 'IBM Plex Sans KR', sans-serif;
+
+    --color-main: #FFE551;
+    --color-sub-1: #2292F9;
+    --color-sub-2: #F98F78;
+
+    /* 폰트 메인색 */
+    --color-text-1: #282828;
+    /* 힌트 */
+    --color-text-2: #9D9999;
+    /* 폰트 비활성 */
+    --color-text-3: #B9B7B7;
+    /* 폰트 에러 메시지 */
+    --color-text-4: #d31111;
+
+    /* 페이지 배경색 */
+    --color-bg-1: #F5F5F7;
+    /* input 배경색 */
+    --color-bg-2: #EEE;
+
+    /* sub-color(button-1) 버튼 비활성 색 */
+    --color-btn-1: #a6d5ff;
+
+    --border-radius: 8px;
+}
