@@ -15,4 +15,8 @@ public interface RestaurantRepository {
 
     int update(Restaurant restaurant);
 
+	int add(Restaurant restaurant);
+
+    int delete(int id);
+
 }

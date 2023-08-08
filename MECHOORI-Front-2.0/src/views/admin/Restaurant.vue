@@ -25,6 +25,24 @@ function searchHandler() {
     })
 }
 
+let deleteId = null
+
+function deleteHandler() {
+
+    fetch(`http://localhost:8080/restaurant/${deleteId}`, {
+        method: 'delete',
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+    })
+
+}
+
+function deleteUiHandler(index) {
+    model.list.splice(index, 1)
+}
+
 </script>
 
 <template>
@@ -63,7 +81,7 @@ function searchHandler() {
                     <div class="btns-wrap">
                         <router-link to="" class="button button-14 btn-menu">MENU</router-link>
                         <router-link :to="`/admin/restaurant/edit/${r.id}`" class="button button-14 btn-edit">EDIT</router-link>
-                        <button class="button button-14 btn-delete">DEL</button>
+                        <button class="button button-14 btn-delete" @click="deleteId=r.id; deleteHandler(); deleteUiHandler(index)">DEL</button>
                     </div>
                 </section>
             </div>

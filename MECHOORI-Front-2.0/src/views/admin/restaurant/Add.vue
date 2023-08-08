@@ -1,3 +1,36 @@
+<script setup>
+import { useRouter } from 'vue-router';
+
+
+let restaurant = {
+    name: null,
+    categoryId: null,
+    img: null,
+    address: null,
+    intro: null,
+    contactNumber: null,
+    operatingTime: null
+}
+
+const router = useRouter()
+
+function saveHandler() {
+    fetch('http://localhost:8080/restaurant/add', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(restaurant)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if(result === 1)
+            router.push('/admin/restaurant')
+    })
+}
+
+</script>
+
 <template>
     <main class="admin-main">
 
@@ -5,33 +38,33 @@
             <div class="form-container">
                 <div class="form-wrap">
                     <label>식당명</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 짜장상회" required />
+                    <input v-model="restaurant.name" type="text" class="placeholder-effect" placeholder="ex) 짜장상회" required />
                 </div>
                 <div class="form-wrap">
                     <label>카테고리</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 중식" required />
+                    <input v-model="restaurant.categoryId" type="text" class="placeholder-effect" placeholder="ex) 중식" required />
                 </div>
                 <div class="form-wrap">
                     <label>이미지</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 짜장상회.jpg" required />
+                    <input v-model="restaurant.img" type="text" class="placeholder-effect" placeholder="ex) 짜장상회.jpg" required />
                 </div>
                 <div class="form-wrap">
                     <label>주소</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 백범로 24" required />
+                    <input v-model="restaurant.address" type="text" class="placeholder-effect" placeholder="ex) 백범로 24" required />
                 </div>
                 <div class="form-wrap">
                     <label>소개</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 근본 중식" required />
+                    <input v-model="restaurant.intro" type="text" class="placeholder-effect" placeholder="ex) 근본 중식" required />
                 </div>
                 <div class="form-wrap">
                     <label>연락처</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 02-000-0000" required />
+                    <input v-model="restaurant.contactNumber" type="text" class="placeholder-effect" placeholder="ex) 02-000-0000" required />
                 </div>
                 <div class="form-wrap">
                     <label>영업 시간</label>
-                    <input type="text" class="placeholder-effect" placeholder="ex) 평일 09:00 - 22:00" required />
+                    <input v-model="restaurant.operatingTime" type="text" class="placeholder-effect" placeholder="ex) 평일 09:00 - 22:00" required />
                 </div>
-                <button class="button button-1 btn-submit" disabled>저장</button>
+                <button class="button button-1 btn-submit" @click="saveHandler">저장</button>
             </div>
         </section>
         

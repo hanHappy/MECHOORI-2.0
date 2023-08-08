@@ -24,6 +24,13 @@
             id = #{id}
     </select>
 
+    <insert id="add" parameterType="Restaurant">
+        insert into
+            restaurant_study(name, category_id, img, address, intro, contact_number, operating_time)
+        values(#{name}, #{categoryId}, #{img}, #{address}, #{intro}, #{contactNumber}, #{operatingTime})
+        
+    </insert>
+
     <update id="update" parameterType="Restaurant">
         update 
             restaurant_study
@@ -36,5 +43,12 @@
             contact_number = #{contactNumber}
         where id = #{id}
     </update>
+
+    <delete id="delete" parameterType="int">
+        delete from
+            restaurant_study
+        where
+            id = #{id}
+    </delete>
 
 </mapper>

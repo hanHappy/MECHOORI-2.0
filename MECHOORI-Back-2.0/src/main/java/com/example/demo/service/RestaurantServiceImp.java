@@ -33,5 +33,15 @@ public class RestaurantServiceImp implements RestaurantService{
     public int update(Restaurant restaurant) {
         return repository.update(restaurant);
     }
+
+    @Override
+    public int add(Restaurant restaurant) {
+        return repository.add(restaurant);
+    }
+
+    @Override
+    public int delete(int id) {
+        return repository.delete(id);
+    }
     
 }

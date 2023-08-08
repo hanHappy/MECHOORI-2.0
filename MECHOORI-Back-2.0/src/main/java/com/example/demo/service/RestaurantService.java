@@ -10,5 +10,7 @@ public interface RestaurantService {
 	List<Restaurant> getListByQuery(String query);
     Restaurant get(int id);
 	int update(Restaurant restaurant);
+    int add(Restaurant restaurant);
+	int delete(int id);
 
 }
