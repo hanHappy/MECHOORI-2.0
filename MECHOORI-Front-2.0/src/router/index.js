@@ -1,12 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import Home from '../views/Home.vue'
 
 import AdminDashboard from '../views/admin/Dashboard.vue'
+
 import AdminLayout from '../components/admin/Layout.vue'
+
 import AdminMember from '../views/admin/Member.vue'
+
 import AdminRestaurant from '../views/admin/Restaurant.vue'
 import RestaurantAdd from '../views/admin/restaurant/Add.vue'
 import RestaurantEdit from '../views/admin/restaurant/Edit.vue'
+
+import AdminMenu from '../views/admin/restaurant/Menu.vue'
+import MenuAdd from '../views/admin/restaurant/menu/Add.vue'
+import MenuEdit from '../views/admin/restaurant/menu/Edit.vue'
 
 
 import '@/assets/css/reset.css'
@@ -41,6 +49,10 @@ const router = createRouter({
         { path: 'restaurant/add', component: RestaurantAdd },
         { path: 'restaurant/edit/:id', component: RestaurantEdit },
         
+        { path: 'restaurant/:id/menu', component: AdminMenu },
+        { path: 'restaurant/:id/menu/add', component: MenuAdd },
+        { path: 'restaurant/:id/menu/edit', component: MenuEdit },
+
         { path: 'category', component: AdminMember },
       ]
     }
