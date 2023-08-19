@@ -2,7 +2,7 @@
     grid-template-columns: repeat(9, 1fr);
 }
 
-.data.restaurant { grid-template-columns: repeat(9, 1fr); }
+.data.content { grid-template-columns: repeat(9, 1fr); }
 
 .button-14 { width: 80%; }
 /* MENU */
@@ -18,4 +18,40 @@
     font-size: 16px;
     color: white;
     background-color: var(--color-sub-2); 
+}
+
+/* ----------- 리뷰 사진 ----------- */
+.review-image-wrap {
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+}
+
+.btn-upload {
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: #EEE;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    height: 30px;
+    width: 100px;
+    padding: 0px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.btn-upload:hover {
+    background-color: #cfcfcf;
+    /* color: #fff; */
+}
+
+.btn-upload.uploaded {
+    background-color: #cfcfcf;
 }

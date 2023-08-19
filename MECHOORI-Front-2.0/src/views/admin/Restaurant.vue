@@ -53,7 +53,7 @@ function deleteUiHandler(index) {
             <button class="button icon icon-search"></button>
         </div>
 
-        <section class="restaurant-list-section">
+        <section class="list-section">
             <h1 class="d-none">식당 리스트</h1>
             <nav class="column-wrap">
                 <ul>
@@ -68,8 +68,8 @@ function deleteUiHandler(index) {
                     <li><router-link to="/admin/restaurant/add" class="button button-13">＋</router-link></li>
                 </ul>
             </nav>
-            <div class="restaurant-list">
-                <section class="data restaurant" v-for="(r, index) in model.list" :key="index">
+            <div class="list">
+                <section class="data content" v-for="(r, index) in model.list" :key="index">
                     <p>{{ r.id }}</p>
                     <p>{{ r.categoryId }}</p>
                     <p>{{ r.name }}</p>

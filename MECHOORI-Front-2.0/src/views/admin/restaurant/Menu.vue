@@ -9,7 +9,7 @@
             <button class="button icon icon-search"></button>
         </div>
 
-        <section class="restaurant-list-section">
+        <section class="list-section">
             <h1 class="d-none">메뉴 리스트</h1>
             <nav class="column-wrap">
                 <ul>
@@ -20,8 +20,8 @@
                     <li><router-link to="menu/add" class="button button-13">＋</router-link></li>
                 </ul>
             </nav>
-            <div class="restaurant-list">
-                <section class="data restaurant">
+            <div class="list">
+                <section class="data content">
                     <p></p>
                     <p></p>
                     <p></p>

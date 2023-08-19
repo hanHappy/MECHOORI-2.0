@@ -6,8 +6,6 @@ import AdminDashboard from '../views/admin/Dashboard.vue'
 
 import AdminLayout from '../components/admin/Layout.vue'
 
-import AdminMember from '../views/admin/Member.vue'
-
 import AdminRestaurant from '../views/admin/Restaurant.vue'
 import RestaurantAdd from '../views/admin/restaurant/Add.vue'
 import RestaurantEdit from '../views/admin/restaurant/Edit.vue'
@@ -15,6 +13,14 @@ import RestaurantEdit from '../views/admin/restaurant/Edit.vue'
 import AdminMenu from '../views/admin/restaurant/Menu.vue'
 import MenuAdd from '../views/admin/restaurant/menu/Add.vue'
 import MenuEdit from '../views/admin/restaurant/menu/Edit.vue'
+
+import AdminCategory from '../views/admin/Category.vue'
+import CategoryAdd from '../views/admin/category/Add.vue'
+import CategoryEdit from '../views/admin/category/Edit.vue'
+
+import AdminMember from '../views/admin/Member.vue'
+import MemberAdd from '../views/admin/member/Add.vue'
+import MemberEdit from '../views/admin/member/Edit.vue'
 
 
 import '@/assets/css/reset.css'
@@ -53,7 +59,13 @@ const router = createRouter({
         { path: 'restaurant/:id/menu/add', component: MenuAdd },
         { path: 'restaurant/:id/menu/edit', component: MenuEdit },
 
-        { path: 'category', component: AdminMember },
+        { path: 'category', component: AdminCategory },
+        { path: 'category/add', component: CategoryAdd },
+        { path: 'category/edit', component: CategoryEdit },
+
+        { path: 'member', component: AdminMember },
+        { path: 'member/add', component: MemberAdd },
+        { path: 'member/edit', component: MemberEdit },
       ]
     }
   ]
