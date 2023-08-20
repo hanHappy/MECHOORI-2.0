@@ -57,7 +57,7 @@ const router = createRouter({
         
         { path: 'restaurant/:id/menu', component: AdminMenu },
         { path: 'restaurant/:id/menu/add', component: MenuAdd },
-        { path: 'restaurant/:id/menu/edit', component: MenuEdit },
+        { path: 'restaurant/:id/menu/:mid/edit', component: MenuEdit },
 
         { path: 'category', component: AdminCategory },
         { path: 'category/add', component: CategoryAdd },
