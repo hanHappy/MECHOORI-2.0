@@ -61,7 +61,7 @@ const router = createRouter({
 
         { path: 'category', component: AdminCategory },
         { path: 'category/add', component: CategoryAdd },
-        { path: 'category/edit', component: CategoryEdit },
+        { path: 'category/:id/edit', component: CategoryEdit },
 
         { path: 'member', component: AdminMember },
         { path: 'member/add', component: MemberAdd },

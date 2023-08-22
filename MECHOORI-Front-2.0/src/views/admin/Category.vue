@@ -1,4 +1,40 @@
 <script setup>
+import { onMounted, ref } from 'vue';
+
+onMounted(()=>{
+    fetch('http://localhost:8080/api/category/list')
+    .then(response => {
+        if(!response.ok)
+            throw new Error("리스트가 없어요")
+        return response.json()
+    })
+    .then(list_ => {
+        list.value = list_
+    })
+    .catch(e => {
+        console.log(e)
+    })
+})
+
+let list = ref()
+
+function deleteHandler(id, index){
+    fetch(`http://localhost:8080/api/category/${id}`, {
+        method: 'delete'
+    })
+    .then(response => {
+        if(!response.ok)
+            throw new Error("삭제 실패")
+        return response.json()
+    })
+    .then(deletedCategory => {
+        list.value.splice(index, 1)
+    })
+    .catch(e => {
+        console.log(e);
+    })
+}
+
 </script>
 
 <template>
@@ -20,13 +56,13 @@
                 </ul>
             </nav>
             <div class="list">
-                <section class="data content">
-                    <p></p>
-                    <p></p>
-                    <p></p>
+                <section class="data content" v-for="c, index in list" :key="index">
+                    <p>{{ c.id }}</p>
+                    <p>{{ c.topCategoryId }}</p>
+                    <p>{{ c.name }}</p>
                     <div class="btns-wrap">
-                        <router-link to="category/edit" class="button button-14 btn-edit">EDIT</router-link>
-                        <button class="button button-14 btn-delete">DEL</button>
+                        <router-link :to="`category/${c.id}/edit`" class="button button-14 btn-edit">EDIT</router-link>
+                        <button class="button button-14 btn-delete" @click="deleteHandler(c.id, index)">DEL</button>
                     </div>
                 </section>
             </div>
