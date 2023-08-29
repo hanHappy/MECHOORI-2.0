@@ -12,14 +12,13 @@ onMounted(()=>{
 
     fetch(`http://localhost:8080/restaurant/${restaurantId}`)
     .then(response => response.json())
-    .then(restaurant_ => {
-        model.restaurant = restaurant_
+    .then(restaurant => {
+        model.restaurant = restaurant
         model.loaded = true
     })
 })
 
 function saveHandler() {
-
     fetch('http://localhost:8080/restaurant/edit', {
         method: 'put',
         headers: {
@@ -27,9 +26,16 @@ function saveHandler() {
         },
         body: JSON.stringify(model.restaurant)
     })
-    .then(response => response.json())
+    .then(response => {
+        if(!response.ok)
+            throw new Error("저장 실패")
+        return response.json()
+    })
     .then(result => {
         console.log(result);
+    })
+    .catch(e => {
+        console.log(e);
     })
 }
 

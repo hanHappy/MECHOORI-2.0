@@ -1,3 +1,15 @@
+.filter-container{
+    margin-top: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-container ul {
+    display: flex;
+    gap: 0.5rem;
+}
+
 .column-wrap ul {
     grid-template-columns: repeat(9, 1fr);
 }
@@ -20,38 +32,15 @@
     background-color: var(--color-sub-2); 
 }
 
-/* ----------- 리뷰 사진 ----------- */
-.review-image-wrap {
-    margin-top: 10px;
-
-    display: flex;
-    align-items: center;
-}
-
-.btn-upload {
-    font-size: 14px;
-    border-radius: 8px;
-    background-color: #EEE;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    height: 30px;
-    width: 100px;
-    padding: 0px 10px;
+.page-container {
+    margin-top: 2rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
 }
 
-.btn-upload:hover {
-    background-color: #cfcfcf;
-    /* color: #fff; */
-}
-
-.btn-upload.uploaded {
-    background-color: #cfcfcf;
+.page-container ul{
+    display: flex;
+    gap: 2rem;
 }

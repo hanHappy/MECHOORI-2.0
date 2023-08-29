@@ -7,7 +7,7 @@
         select 
             * 
         from 
-            category_study
+            top_category
     </select>
 
     <select id="findById" resultType="Category">

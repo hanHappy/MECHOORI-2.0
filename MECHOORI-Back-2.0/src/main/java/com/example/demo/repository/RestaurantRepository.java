@@ -9,14 +9,14 @@ import com.example.demo.entity.Restaurant;
 @Mapper
 public interface RestaurantRepository {
 
-    List<Restaurant> findAll(String query);
+    List<Restaurant> findAll(String name, Integer categoryId, String filter);
 
-    Restaurant find(int id);
+    Restaurant findById(int id);
 
     int update(Restaurant restaurant);
 
-	int add(Restaurant restaurant);
+    void add(Restaurant restaurant);
 
-    int delete(int id);
+    Restaurant findByName(String name);
 
 }

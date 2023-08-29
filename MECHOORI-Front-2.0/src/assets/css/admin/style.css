@@ -13,7 +13,7 @@ input { width: 100%; }
 .icon-search { width: 30px; }
 
 /* ============== 목록 ============== */
-.column-wrap { margin-top: 50px; }
+.column-wrap { margin-top: 1rem; }
 .column-wrap ul {
     font-weight: bold;
     text-align: center;

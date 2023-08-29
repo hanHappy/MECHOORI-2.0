@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Menu;
 import com.example.demo.entity.Restaurant;
+import com.example.demo.exception.Exc;
 import com.example.demo.service.MenuService;
 import com.example.demo.service.RestaurantService;
 
@@ -30,38 +31,43 @@ public class RestaurantController {
     @Autowired
     private MenuService menuService;
 
-    @GetMapping("list") // restaurant/list?q=짜장
-    public List<Restaurant> list(
-        @RequestParam(name = "q", required = false) String query){
+    // http://localhost:8080/restrant/list?q=짜장
+    @GetMapping("list")
+    public ResponseEntity<List<Restaurant>> list(
+        @RequestParam(name = "q", required = false) String name,
+        @RequestParam(name = "c", required = false) Integer categoryId,
+        @RequestParam(name = "f", required = false) Integer filterId){
 
         List<Restaurant> list = null;
 
-        if(query == null)
+        if(name != null)
+            list = service.getListByName(name);
+        else if(categoryId != null)
+            list = service.getListByCategoryId(categoryId);
+        else if(filterId != null)
+            list = service.getListByFilterId(filterId);
+        else 
             list = service.getList();
-        else
-            list = service.getListByQuery(query);
-
-        return list;
+        
+        return Exc.handleException(list);
     }
 
     @GetMapping("{id}")
-    public Restaurant detail(@PathVariable("id") int id){
-        return service.get(id);
-    }
-
-    @PutMapping("edit")
-    public int update(@RequestBody Restaurant restaurant){
-        return service.update(restaurant);
+    public ResponseEntity<Restaurant> detail(@PathVariable("id") int id){
+        Restaurant restaurant = service.getById(id);
+        return Exc.handleException(restaurant);
     }
 
     @PostMapping("add")
-    public int add(@RequestBody Restaurant restaurant){
-        return service.add(restaurant);
+    public ResponseEntity<Restaurant> add(@RequestBody Restaurant restaurant){
+        Restaurant addedRestaurant = service.add(restaurant);
+        return Exc.handleException(addedRestaurant);
     }
 
-    @DeleteMapping("{id}")
-    public int delete(@PathVariable("id") int id){
-        return service.delete(id);
+    @PutMapping("edit")
+    public ResponseEntity<Restaurant> edit(@RequestBody Restaurant restaurant){
+        Restaurant updatedRestaurant = service.update(restaurant);
+        return Exc.handleException(updatedRestaurant);
     }
 
     @GetMapping("{id}/menu")

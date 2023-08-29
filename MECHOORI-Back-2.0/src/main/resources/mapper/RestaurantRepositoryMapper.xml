@@ -5,50 +5,61 @@
 <mapper namespace="com.example.demo.repository.RestaurantRepository">
 
     <select id="findAll" resultType="Restaurant">
-        select 
-            * 
-        from 
-            restaurant_study
-        <if test="query != null">
-            where 
-                name like '%${query}%'
-        </if>
-    </select>
-
-    <select id="find" resultType="Restaurant">
         select
             *
-        from 
+        from
             restaurant_study
-        where 
+        <trim prefix="where" prefixOverrides="AND">
+            <if test="name != null">
+            name like '%${name}%'
+            </if>
+            <if test="categoryId != null">
+            category_id = #{categoryId}
+            </if>
+        </trim>
+        order by id desc
+        limit 0, 10
+    </select>
+
+    <select id="findById" resultType="Restaurant">
+        select
+            *
+        from    
+            restaurant_study
+        where
             id = #{id}
+    </select>
+
+    <select id="findByName" resultType="Restaurant">
+        select
+            *
+        from    
+            restaurant_study
+        where
+            name = #{name}
     </select>
 
     <insert id="add" parameterType="Restaurant">
         insert into
-            restaurant_study(name, category_id, img, address, intro, contact_number, operating_time)
-        values(#{name}, #{categoryId}, #{img}, #{address}, #{intro}, #{contactNumber}, #{operatingTime})
-        
+            restaurant_study
+            (category_id, name, img, intro, address, operating_time, contact_number)
+        values
+            (#{categoryId}, #{name}, #{img}, #{intro}, #{address}, #{operatingTime}, #{contactNumber})
     </insert>
 
     <update id="update" parameterType="Restaurant">
-        update 
+        update
             restaurant_study
         set
-            name = #{name},
             category_id = #{categoryId},
+            name = #{name},
             img = #{img},
+            intro = #{intro},
             address = #{address},
             operating_time = #{operatingTime},
             contact_number = #{contactNumber}
-        where id = #{id}
-    </update>
-
-    <delete id="delete" parameterType="int">
-        delete from
-            restaurant_study
         where
             id = #{id}
-    </delete>
+    </update>
 
 </mapper>

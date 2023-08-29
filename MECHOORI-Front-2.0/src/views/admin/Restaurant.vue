@@ -3,6 +3,7 @@ import { onMounted, reactive } from 'vue';
 
 let model = reactive({
     list: [],
+    categoryList: [],
     searchWord: null
 })
 
@@ -12,11 +13,58 @@ onMounted(()=>{
     .then(response => response.json())
     .then(list => {
         model.list = list
-        
     })
-    
+
+    fetch('http://localhost:8080/api/category/list')
+    .then(response => {
+        if(!response.ok)
+            throw new Error("카테고리를 찾을 수 없습니다")
+        return response.json()
+    })
+    .then(categoryList_ => {
+        model.categoryList = categoryList_
+    })
+    .catch(e => {
+        console.log(e)
+    })
 })
 
+function categoryClickHandler(cid){
+    fetch(`http://localhost:8080/restaurant/list?c=${cid}`)
+    .then(response => {
+        if(!response.ok)
+            throw new Error("목록을 찾을 수 없습니다")
+        return response.json()
+    })
+    .then(list => {
+        model.list = list
+    })
+    .catch(e => {
+        console.log(e)
+    })
+}
+
+// 필터링 ----------------------------
+let filterId
+function filteringHandler(){
+    let url = `http://localhost:8080/restaurant/list?f=${filterId}`
+    console.log(url);
+    fetch(url)
+    .then(response => {
+        if(!response.ok)
+            throw new Error("목록을 찾을 수 없습니다")
+        return response.json()
+    })
+    .then(list => {
+        model.list = list
+    })
+    .catch(e => {
+        console.log(e)
+    })
+    
+}
+
+// 검색 -------------------------------
 function searchHandler() {
     fetch(`http://localhost:8080/restaurant/list?q=${model.searchWord}`)
     .then(response => response.json())
@@ -28,7 +76,6 @@ function searchHandler() {
 let deleteId = null
 
 function deleteHandler() {
-
     fetch(`http://localhost:8080/restaurant/${deleteId}`, {
         method: 'delete',
     })
@@ -36,7 +83,6 @@ function deleteHandler() {
     .then(result => {
         console.log(result);
     })
-
 }
 
 function deleteUiHandler(index) {
@@ -51,6 +97,31 @@ function deleteUiHandler(index) {
         <div class="search-input-wrap">
             <input type="text" class="input placeholder-effect" placeholder="식당 검색" v-model="model.searchWord" @keydown.enter="searchHandler">
             <button class="button icon icon-search"></button>
+        </div>
+
+        <div class="filter-container">
+            <div class="category-container">
+                <ul>
+                    <li><button>전체</button></li>
+                    <li 
+                        v-for="c, index in model.categoryList" 
+                        :key="index"
+                        @click="categoryClickHandler(c.id)">
+                        <button>{{ c.name }}</button>
+                    </li>
+                </ul>
+            </div>
+            <select  
+                class="filter" 
+                @change="filteringHandler" 
+                v-model="filterId">
+                <option value="">전체</option>
+                <option value="1">가성비순</option>
+                <option value="2">가격낮은순</option>
+                <option value="3">가격높은순</option>
+                <option value="4">좋아요순</option>
+                <option value="5">평가순</option>
+            </select>
         </div>
 
         <section class="list-section">
@@ -86,6 +157,11 @@ function deleteUiHandler(index) {
                 </section>
             </div>
         </section>
+        <div class="page-container">
+            <ul>
+                <li>1</li>
+            </ul>
+        </div>
     </main>
 </template>
 

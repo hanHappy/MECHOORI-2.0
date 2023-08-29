@@ -22,10 +22,16 @@ function saveHandler() {
         },
         body: JSON.stringify(restaurant)
     })
-    .then(response => response.json())
-    .then(result => {
-        if(result === 1)
-            router.push('/admin/restaurant')
+    .then(response => {
+        if(!response.ok)
+            throw new Error("추가 실패")
+        return response.json()
+    })
+    .then(newRestaurant => {
+        console.log(newRestaurant);
+    })
+    .catch(e => {
+        console.log(e);
     })
 }
 

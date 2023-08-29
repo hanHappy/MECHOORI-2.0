@@ -6,11 +6,18 @@ import com.example.demo.entity.Restaurant;
 
 public interface RestaurantService {
 
-	List<Restaurant> getList();
-	List<Restaurant> getListByQuery(String query);
-    Restaurant get(int id);
-	int update(Restaurant restaurant);
-    int add(Restaurant restaurant);
-	int delete(int id);
+    List<Restaurant> getList();
+
+    List<Restaurant> getListByName(String name);
+
+    List<Restaurant> getListByCategoryId(Integer categoryId);
+
+    List<Restaurant> getListByFilterId(Integer filterId);
+
+    Restaurant getById(int id);
+
+    Restaurant update(Restaurant restaurant);
+
+	Restaurant add(Restaurant restaurant);
 
 }
